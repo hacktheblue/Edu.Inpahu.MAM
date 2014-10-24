@@ -11,7 +11,7 @@
  *
  * @author FERNANDO1
  */
-class SoporteClinico {
+class SoporteClinico extends Soporte{
     //put your code here
     public function IngresarAplicacion(){}
     public function SeguirCaso(){}

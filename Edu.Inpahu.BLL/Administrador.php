@@ -11,7 +11,7 @@
  *
  * @author FERNANDO1
  */
-class Administrador {
+class Administrador extends Usuario{
     //put your code here
     public function IngresarAplicacion(){}
     public function SeguirCaso(){}

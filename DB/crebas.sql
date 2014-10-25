@@ -4,7 +4,7 @@
 /*==============================================================*/
 
 
-drop trigger TRIGGER_1;
+
 
 drop table if exists ADJUNTO;
 

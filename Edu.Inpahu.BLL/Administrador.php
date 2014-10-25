@@ -11,16 +11,37 @@
  *
  * @author FERNANDO1
  */
+
+include ("../Conexion/Conexion.php");
+include ("Db.php");
+
 class Administrador extends Usuario{
     //put your code here
+    
+    private $ClaseDb;
+
+    public function __construct(Db $ClaseDb)
+    {
+        $this->ClaseDb = $ClaseDb;
+    }
     public function IngresarAplicacion(){}
     public function SeguirCaso(){}
     public function VerificarIndicadores(){}
     public function GenerarReporte(){}
     public function GenerarCaso(){}
-    private function AsignarCaso(){}
-    private function ParametrizarAplicacion(){}
-    private function CrearUsuario(){}
-    private function ActulizarUsuario(){}
-    private function InactivarUsuario(){}
+    public function AsignarCaso(){}
+    public function ParametrizarAplicacion(){}
+    public function CrearUsuario($id,$nombre,$area,$sede,$telefono){
+        $table = "usuarios";
+        $vars['usu_id'] = $id;
+        $vars['usu_nombre'] = $nombre;
+        $vars['usu_area'] = $area;
+        $vars['usu_sede'] = $sede;
+        $vars['usu_telefono'] = $telefono;
+        
+        $this->ClaseDb->insert($table, $vars);
+        
+    }
+    public function ActulizarUsuario(){}
+    public function InactivarUsuario(){}
 }

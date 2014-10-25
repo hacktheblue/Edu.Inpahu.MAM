@@ -214,7 +214,9 @@ class Db {
             if(in_array($key, $exclude)){
                 continue;
             }
-            $query .= "`{$key}` = '{$value}', ";
+            if($value!= NULL){
+                $query .= "`{$key}` = '{$value}', ";
+            }
         }
 
         $query = substr($query, 0, -2);

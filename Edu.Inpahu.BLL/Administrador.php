@@ -53,6 +53,16 @@ class Administrador extends Usuario{
         $this->ClaseDb->update($table, $set, $where);
         
     }
+        public function EliminarUsuario($id,$nombre=NULL, $area=NULL,$sexo=NULL,$telefono= NULL,$sede=NULL){
+        $table = "usuarios";
+        $set['usu_nombre'] = $nombre;
+        $set['usu_area'] = $area;
+        $set['usu_sede'] = $sede;
+        $set['usu_telefono'] = $telefono;
+        $set['usu_sexo']=$sexo;
+        $where['usu_id'] = $id;
+        $this->ClaseDb->delete($table, $set, $where);
+        
     public function InactivarUsuario(){}
 }
 

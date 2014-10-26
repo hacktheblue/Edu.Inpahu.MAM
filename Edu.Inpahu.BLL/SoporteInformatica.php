@@ -11,8 +11,23 @@
  *
  * @author FERNANDO1
  */
+
+include ("../Conexion/Conexion.php");
+
+include ("Soporte.php");
+
 class SoporteInformatica extends Soporte{
     //put your code here
+    
+    private $ClaseDb;
+            
+    public function __construct3(Db $ClaseDb)
+    {
+        $this->ClaseDb = $ClaseDb;
+    }
+    
+    
+    
     public function IngresarAplicacion(){}
     public function SeguirCaso(){}
     public function VerificarIndicadores(){}

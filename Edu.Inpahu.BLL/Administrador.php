@@ -12,9 +12,9 @@
  * @author FERNANDO1
  */
 
-include ("../Conexion/Conexion.php");
+require_once("../Conexion/Conexion.php");
 
-include ("Usuario.php");
+require_once ("Usuario.php");
 class Administrador extends Usuario{
     //put your code here
     
@@ -53,19 +53,15 @@ class Administrador extends Usuario{
         $this->ClaseDb->update($table, $set, $where);
         
     }
-        public function EliminarUsuario($id,$nombre=NULL, $area=NULL,$sexo=NULL,$telefono= NULL,$sede=NULL){
-        $table = "usuarios";
-        $set['usu_nombre'] = $nombre;
-        $set['usu_area'] = $area;
-        $set['usu_sede'] = $sede;
-        $set['usu_telefono'] = $telefono;
-        $set['usu_sexo']=$sexo;
-        $where['usu_id'] = $id;
-        $this->ClaseDb->delete($table, $set, $where);
-        
+    public function EliminarUsuario($id,$nombre=NULL, $area=NULL,$sexo=NULL,$telefono= NULL,$sede=NULL){
+    $table = "usuarios";
+    $where['usu_id'] = $id;
+
+    $this->ClaseDb->delete($table,$where);
+    }
     public function InactivarUsuario(){}
 }
 
-$Mario = new Administrador($ClaseDb);
-$Mario->CrearUsuario("2", "jUAN", "Sistemas", "bogota", "2337176", "M");
-$Mario->ActulizarUsuario("1", "Pablo Escobrar");
+//$Mario = new Administrador($ClaseDb);
+//$Mario->CrearUsuario("3", "Andres", "Sistemas", "Medellin", "2337176", "M");
+//$Mario->EliminarUsuario("3");

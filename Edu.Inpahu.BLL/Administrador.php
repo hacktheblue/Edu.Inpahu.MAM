@@ -20,7 +20,7 @@ class Administrador extends Usuario{
     
     private $ClaseDb;
 
-    public function __construct1(Db $ClaseDb)
+    public function __construct(Db $ClaseDb)
     {
         $this->ClaseDb = $ClaseDb;
     }
@@ -63,7 +63,7 @@ class Administrador extends Usuario{
         $where['usu_id'] = $id;
         $this->ClaseDb->delete($table, $set, $where);
         
-    
+    public function InactivarUsuario(){}
 }
 
 $Mario = new Administrador($ClaseDb);

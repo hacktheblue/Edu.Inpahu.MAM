@@ -1,4 +1,7 @@
 <?php 
+
+require_once('../Edu.Inpahu.BLL/Administrador.php');
+
     $id_usu = $_POST['id_usu'];
     $nom_usu = $_POST['nom_usu'];
     $edad_usu = $_POST['edad_usu'];
@@ -8,9 +11,18 @@
     $tel_usu = $_POST['tel_usu'];
     
    
-    require_once('../Conexion/Conexion.php');
-    $sql="select usu_id from usuarios Where usu_id = '$id_usu' ";
-    $result = mysql_query($sql,$mamcon) or die(mysqli_error());
+$Mario = new Administrador($ClaseDb);
+if($Mario->CrearUsuario($id_usu, $nom_usu, $area_usu,   $sede_usu,  $tel_usu , $sexo)){
+    
+    
+    echo "<h3>Exito</h3>";
+    
+}else{
+    echo "<h3>Exito</h3>";
+}
+
+    
+ 
  
 ?>
 

@@ -190,7 +190,7 @@ class Db {
         if($limit != ''){
             $query .= ' LIMIT ' . $limit;
         }
-     
+
         return $this->executeSQL($query);
 
     }

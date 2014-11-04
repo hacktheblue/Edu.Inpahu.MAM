@@ -17,15 +17,6 @@ include ("../Conexion/Conexion.php");
 include ("Usuario.php");
 abstract class Soporte  extends Usuario{
     //put your code here
-    
-    private $ClaseDb;
-            
-    public function __construct2(Db $ClaseDb)
-    {
-        $this->ClaseDb = $ClaseDb;
-    }
-    
-    
         
     abstract public function SolucionarCaso();
     abstract public function ResponderCaso();

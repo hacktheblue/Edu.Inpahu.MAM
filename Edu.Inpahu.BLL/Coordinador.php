@@ -19,4 +19,5 @@ class Coordinador extends Usuario{
     public function GenerarReporte(){}
     public function GenerarCaso(){}
     public function ReaperturaCaso(){}
+     public function GenerarSolicitud();
 }

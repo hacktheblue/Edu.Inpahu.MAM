@@ -11,6 +11,8 @@
  *
  * @author FERNANDO1
  */
+
+
 abstract class Usuario {
 //put your code here
     private $pimerNombre;
@@ -22,9 +24,23 @@ abstract class Usuario {
     private $email;
     private $area;
     private $ciudad;
+    private $ClaseDb;
+    
+    public function __construct(Db $ClaseDb)
+    {
+        $this->ClaseDb = $ClaseDb;
+    }
     
     public function GetArea() {
         return $this->area;
+    }
+    
+    public function SetDB() {
+        $this->ClaseDb;
+    }
+    
+    public function GetDB() {
+        return $this->ClaseDb;
     }
     public function SetArea($area) {
         $this->area = $area;
@@ -86,33 +102,38 @@ abstract class Usuario {
     
     public function IngresarAplicacion($id,$password){
         $passwordHash = md5($password);
-        $where['usu_id'] = $id;
+        $where['USU_CEDULA'] = $id;
         $from = "usuarios";        
-        $User = $this->ClaseDb->select($from, $where);
-            if($User != 0 && $passwordHash == $User['usu_password']){
+        $User = $this->ClaseDb->select($from, $where);      
+        
+            if($User != 0 && $passwordHash == $User['USU_CLAVE']){
                 $_SESSION['USUARIOLOG'] = true;
                 $_SESSION['USUARIOID'] = $id;
                 $this->InicializarUsuario($User);
+                echo "ha Ingresado";
             }
             else{
                 $_SESSION['USUARIOLOG'] = false;
+                echo "no  Ingreso";
             }
     }
     
     private function InicializarUsuario($usuario){
-        $this->pimerNombre = $usuario['usu_nombre'];
-        $this->segundoNombre = $usuario['usu_nombre'];
-        $this->primerApellido = $usuario['usu_nombre'];
-        $this->segundoApellido = $usuario['usu_nombre'];
-        $this->cedula = $usuario['usu_cedula'];
-        $this->telefono = $usuario['usu_telefono'];
-        $this->email = $usuario['usu_email'];
-        $this->area = $usuario['usu_area'];
-        $this->sede = $usuario['usu_sede'];
+        $this->pimerNombre = $usuario['USU_NOMBRE'];
+        $this->segundoNombre = $usuario['USU_NOMBRE'];
+        $this->primerApellido = $usuario['USU_NOMBRE'];
+        $this->segundoApellido = $usuario['USU_NOMBRE'];
+        $this->cedula = $usuario['USU_CEDULA'];
+        $this->telefono = $usuario['USU_TELEFONO'];
+        $this->email = $usuario['USU_EMAIL'];
+        $this->area = $usuario['USU_AREA'];
+        $this->sede = $usuario['USU_SEDE'];
     }
 
     abstract public function SeguirCaso();
     abstract public function VerificarIndicadores();
-    abstract public function GenerarReporte();
-    abstract public function GenerarCaso();
+    abstract public function GenerarReporteGlobal();
+    abstract public function GenerarReporteEspecifico($idReporte);
+    abstract public function GenerarCaso($reqID,$tipificacionCasoId,$calificacionId,$divSubcategoriasId,$cateVsEstadosId,$origenSolicitudID,$reqTitulo,$reqDescripcion,$reqAct,$reqUsuarioSol,$reqFechaSol,$reqObservacion,$reqCambio,$tipoCasoID);
+    abstract public function GenerarSolicitud();
 }

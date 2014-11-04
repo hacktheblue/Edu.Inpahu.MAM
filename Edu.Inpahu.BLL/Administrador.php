@@ -24,10 +24,14 @@ class Administrador extends Usuario{
     {
         $this->ClaseDb = $ClaseDb;
     }
-    public function IngresarAplicacion(){}
+  
     public function SeguirCaso(){}
     public function VerificarIndicadores(){}
-    public function GenerarReporte(){}
+    public function GenerarReporte($idCaso){
+        $from = "requerimiento";
+        $where['req_id'] = $idCaso;
+        $caso = $this->ClaseDb->select($from, $where);
+    }
     public function GenerarCaso(){}
     public function AsignarCaso(){}
     public function ParametrizarAplicacion(){}

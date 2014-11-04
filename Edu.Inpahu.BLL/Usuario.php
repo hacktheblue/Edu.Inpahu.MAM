@@ -84,7 +84,33 @@ abstract class Usuario {
         $this->ciudad = $ciudad;
     }
     
-    abstract public function IngresarAplicacion();
+    public function IngresarAplicacion($id,$password){
+        $passwordHash = md5($password);
+        $where['usu_id'] = $id;
+        $from = "usuarios";        
+        $User = $this->ClaseDb->select($from, $where);
+            if($User != 0 && $passwordHash == $User['usu_password']){
+                $_SESSION['USUARIOLOG'] = true;
+                $_SESSION['USUARIOID'] = $id;
+                $this->InicializarUsuario($User);
+            }
+            else{
+                $_SESSION['USUARIOLOG'] = false;
+            }
+    }
+    
+    private function InicializarUsuario($usuario){
+        $this->pimerNombre = $usuario['usu_nombre'];
+        $this->segundoNombre = $usuario['usu_nombre'];
+        $this->primerApellido = $usuario['usu_nombre'];
+        $this->segundoApellido = $usuario['usu_nombre'];
+        $this->cedula = $usuario['usu_cedula'];
+        $this->telefono = $usuario['usu_telefono'];
+        $this->email = $usuario['usu_email'];
+        $this->area = $usuario['usu_area'];
+        $this->sede = $usuario['usu_sede'];
+    }
+
     abstract public function SeguirCaso();
     abstract public function VerificarIndicadores();
     abstract public function GenerarReporte();

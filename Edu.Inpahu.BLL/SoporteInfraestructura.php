@@ -11,7 +11,7 @@
  *
  * @author FERNANDO1
  */
-include ("Soporte.php");
+require_once ("Soporte.php");
 
 class SoporteInfraestructura  extends Soporte {
     //put your code here
@@ -58,5 +58,5 @@ class SoporteInfraestructura  extends Soporte {
     public function EscalarCaso(){}
     public function VerReporteEquipo(){}
 }
-$marcos = new SoporteInfraestructura($ClaseDataBase);
-echo print_R($marcos->GenerarReporteGlobal());
+//$marcos = new SoporteInfraestructura($ClaseDataBase);
+//echo print_R($marcos->GenerarReporteGlobal());

@@ -11,6 +11,7 @@
  *
  * @author FERNANDO1
  */
+require_once ("Soporte.php");
 abstract class SoporteSupervisor extends Soporte {
     //put your code here
     abstract public function AsignarCaso();

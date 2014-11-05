@@ -14,7 +14,7 @@
 
 
 
-include ("Soporte.php");
+require_once ("Soporte.php");
 
 class SoporteInformatica extends Soporte{
     //put your code here  
@@ -61,6 +61,6 @@ class SoporteInformatica extends Soporte{
     public function EscalarCaso(){}
     public function VerReporteEquipo(){}
 }
-
-$daniel = new SoporteInformatica($ClaseDataBase);
-echo print_R($daniel->GenerarReporteGlobal());
+//
+//$daniel = new SoporteInformatica($ClaseDataBase);
+//echo print_R($daniel->GenerarReporteGlobal());

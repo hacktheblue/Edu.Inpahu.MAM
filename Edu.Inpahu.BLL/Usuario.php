@@ -25,6 +25,7 @@ abstract class Usuario {
     private $area;
     private $ciudad;
     private $ClaseDb;
+    private $tipoUsuarioId;
     
     public function __construct(Db $ClaseDb)
     {
@@ -100,25 +101,11 @@ abstract class Usuario {
         $this->ciudad = $ciudad;
     }
     
-    public function IngresarAplicacion($id,$password){
-        $passwordHash = md5($password);
-        $where['USU_CEDULA'] = $id;
-        $from = "usuarios";        
-        $User = $this->ClaseDb->select($from, $where);      
-        
-            if($User != 0 && $passwordHash == $User['USU_CLAVE']){
-                $_SESSION['USUARIOLOG'] = true;
-                $_SESSION['USUARIOID'] = $id;
-                $this->InicializarUsuario($User);
-                echo "ha Ingresado";
-            }
-            else{
-                $_SESSION['USUARIOLOG'] = false;
-                echo "no  Ingreso";
-            }
+    public function GetTPU() {
+        return $this->tipoUsuarioId;
     }
-    
-    private function InicializarUsuario($usuario){
+       
+    public function InicializarUsuario($usuario){
         $this->pimerNombre = $usuario['USU_NOMBRE'];
         $this->segundoNombre = $usuario['USU_NOMBRE'];
         $this->primerApellido = $usuario['USU_NOMBRE'];
@@ -128,6 +115,7 @@ abstract class Usuario {
         $this->email = $usuario['USU_EMAIL'];
         $this->area = $usuario['USU_AREA'];
         $this->sede = $usuario['USU_SEDE'];
+        $this->tipoUsuarioId = $usuario['TPU_ID'];
     }
 
     abstract public function SeguirCaso();

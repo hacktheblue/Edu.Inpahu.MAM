@@ -12,9 +12,9 @@
  * @author FERNANDO1
  */
 
-include ("../Conexion/Conexion.php");
 
-include ("Usuario.php");
+
+require_once ("Usuario.php");
 abstract class Soporte  extends Usuario{
     //put your code here
         

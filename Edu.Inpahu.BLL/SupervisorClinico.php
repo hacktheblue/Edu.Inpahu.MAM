@@ -11,6 +11,7 @@
  *
  * @author FERNANDO1
  */
+require_once ("SoporteSupervisor.php");
 class SupervisorClinico extends SoporteSupervisor {
     //put your code here
     

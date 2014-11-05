@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2014 a las 23:06:43
+-- Tiempo de generación: 05-11-2014 a las 20:47:12
 -- Versión del servidor: 5.5.32
 -- Versión de PHP: 5.4.19
 
@@ -230,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   `mdo_number` varchar(40) NOT NULL,
   `mdo_nombre` varchar(40) NOT NULL,
   `mdo_cssIconoForm` varchar(30) NOT NULL,
+  `mdo_viewName` varchar(30) NOT NULL,
   PRIMARY KEY (`mdo_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
@@ -237,15 +238,15 @@ CREATE TABLE IF NOT EXISTS `modulos` (
 -- Volcado de datos para la tabla `modulos`
 --
 
-INSERT INTO `modulos` (`mdo_id`, `mdo_number`, `mdo_nombre`, `mdo_cssIconoForm`) VALUES
-(1, '1', 'Administrador Cuentas', 'fa-users'),
-(2, '2', 'Reportes', 'fa-folder-open'),
-(3, '3', 'Casos', 'fa-newspaper-o'),
-(4, '4', 'Servicios', 'fa-book'),
-(5, '5', 'Areas', 'fa-language'),
-(6, '6', 'Sedes', 'fa-building-o'),
-(7, '7', 'Ajustes ', 'fa-wrench'),
-(8, '8', 'Solicitud Servicio', 'fa-share');
+INSERT INTO `modulos` (`mdo_id`, `mdo_number`, `mdo_nombre`, `mdo_cssIconoForm`, `mdo_viewName`) VALUES
+(1, '1', 'Administrador Cuentas', 'fa-users', 'AdministraUsuView.php'),
+(2, '2', 'Reportes', 'fa-folder-open', 'ReportesView.php'),
+(3, '3', 'Casos', 'fa-file-text', 'CasosView.php'),
+(4, '4', 'Servicios', 'fa-book', 'ServiciosView.php'),
+(5, '5', 'Areas', 'fa-language', 'AreaView.php'),
+(6, '6', 'Sedes', 'fa-building-o', 'SedesView.php'),
+(7, '7', 'Ajustes ', 'fa-wrench', 'AjusesView.php'),
+(8, '8', 'Solicitud Servicio', 'fa-share', 'SolicitudSerView.php');
 
 -- --------------------------------------------------------
 
@@ -286,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   `per_modulo8` char(1) NOT NULL,
   PRIMARY KEY (`per_id`),
   UNIQUE KEY `per_tpu_id` (`per_tpu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `permisos`
@@ -300,7 +301,8 @@ INSERT INTO `permisos` (`per_id`, `per_tpu_id`, `per_modulo1`, `per_modulo2`, `p
 (5, 5, '0', '1', '1', '0', '0', '0', '1', '1'),
 (6, 6, '0', '1', '1', '0', '0', '0', '1', '1'),
 (7, 7, '0', '1', '1', '0', '0', '0', '1', '1'),
-(8, 8, '0', '0', '1', '0', '0', '0', '1', '1');
+(8, 8, '0', '1', '1', '0', '0', '0', '1', '1'),
+(9, 9, '0', '1', '0', '0', '0', '0', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -559,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `tipo_usuarios` (
   `tpu_id` int(11) NOT NULL AUTO_INCREMENT,
   `tpu_nombre` varchar(30) NOT NULL,
   PRIMARY KEY (`tpu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `tipo_usuarios`
@@ -600,7 +602,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   KEY `AK_USUARIOS` (`USU_CODIGO`),
   KEY `FK_REFERENCE_30` (`USU_USU_ID`),
   KEY `TPU_ID` (`TPU_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='R_7' AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='R_7' AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`USU_ID`, `TPU_ID`, `USU_NOMBRE`, `USU_CEDULA`, `USU_SEDE`, `USU_TELEFONO`, `USU_EMAIL`, `USU_AREA`, `USU_SEXO`, `USU_CODIGO`, `USU_CLAVE`, `USU_ACT`, `USU_USU_ID`) VALUES
+(1, 1, 'Juan Vega', '1023925838', '1123123', '123123', '123123', '123123', 'M', '123', 'c9bf6c4a4fc1ac127bf27c71ce2e7250', 1, 1),
+(2, 9, '123123', '1', '1', '1', '1', '1', '1', '1', 'c9bf6c4a4fc1ac127bf27c71ce2e7250', 1, 1);
 
 --
 -- Restricciones para tablas volcadas
@@ -677,12 +687,12 @@ ALTER TABLE `relrutcat`
 -- Filtros para la tabla `requerimiento`
 --
 ALTER TABLE `requerimiento`
-  ADD CONSTRAINT `requerimiento_ibfk_1` FOREIGN KEY (`TPC_ID`) REFERENCES `tipo_caso` (`TPC_ID`),
   ADD CONSTRAINT `FK_REFERENCE_12` FOREIGN KEY (`TIPC_ID`) REFERENCES `tipificacioncasos` (`TIPC_ID`),
   ADD CONSTRAINT `FK_REFERENCE_13` FOREIGN KEY (`DIV_ID`) REFERENCES `divsubcategorias` (`DIV_ID`),
   ADD CONSTRAINT `FK_REFERENCE_18` FOREIGN KEY (`CVSE_ID`) REFERENCES `catevsestados` (`CVSE_ID`),
   ADD CONSTRAINT `FK_REFERENCE_22` FOREIGN KEY (`ORGS_ID`) REFERENCES `origensolicitud` (`ORGS_ID`),
-  ADD CONSTRAINT `FK_REFERENCE_24` FOREIGN KEY (`CALI_ID`) REFERENCES `calificacion` (`CALI_ID`);
+  ADD CONSTRAINT `FK_REFERENCE_24` FOREIGN KEY (`CALI_ID`) REFERENCES `calificacion` (`CALI_ID`),
+  ADD CONSTRAINT `requerimiento_ibfk_1` FOREIGN KEY (`TPC_ID`) REFERENCES `tipo_caso` (`TPC_ID`);
 
 --
 -- Filtros para la tabla `rolusucat`
@@ -715,8 +725,8 @@ ALTER TABLE `submodulos`
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`TPU_ID`) REFERENCES `tipo_usuarios` (`tpu_id`),
-  ADD CONSTRAINT `FK_REFERENCE_30` FOREIGN KEY (`USU_USU_ID`) REFERENCES `usuarios` (`USU_ID`);
+  ADD CONSTRAINT `FK_REFERENCE_30` FOREIGN KEY (`USU_USU_ID`) REFERENCES `usuarios` (`USU_ID`),
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`TPU_ID`) REFERENCES `tipo_usuarios` (`tpu_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

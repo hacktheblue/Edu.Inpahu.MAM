@@ -12,7 +12,7 @@
  * @author FERNANDO1
  */
 
-require_once("../Conexion/Conexion.php");
+
 require_once ("Usuario.php");
 class Administrador extends Usuario{
     //put your code here
@@ -100,8 +100,8 @@ class Administrador extends Usuario{
     public function GenerarSolicitud(){}
 }
 
-$Mario = new Administrador($ClaseDataBase);
-echo print_R($Mario->GenerarReporteGlobal());
+//$Mario = new Administrador($ClaseDataBase);
+//echo print_R($Mario->GenerarReporteGlobal());
 
 //$Mario->IngresarAplicacion("1023925838", "JuanMaster"); 
 //$Mario->CrearUsuario("1023925898", "Mario", "Sistemas", "Medellin", "2337176", "M","JuanMaster","email@example.com");

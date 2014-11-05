@@ -12,7 +12,7 @@
  * @author FERNANDO1
  */
 
-include ("Soporte.php");
+require_once ("Soporte.php");
 class SoporteClinico extends Soporte{
     //put your code here
    
@@ -58,6 +58,6 @@ class SoporteClinico extends Soporte{
     public function EscalarCaso(){}
     public function VerReporteEquipo(){}
  }
-
-   $Juan = new SoporteClinico($ClaseDataBase);
-   echo print_R($Juan->GenerarReporteGlobal());
+//
+//   $Juan = new SoporteClinico($ClaseDataBase);
+//   echo print_R($Juan->GenerarReporteGlobal());

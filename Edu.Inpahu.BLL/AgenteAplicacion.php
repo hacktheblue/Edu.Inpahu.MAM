@@ -102,44 +102,44 @@ class AgenteAplicacion {
                 break;
             case 2:
                  $_SESSION['UsuarioActual'] = new Coordinador($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+                 
                 break;
             case 3:
                  $_SESSION['UsuarioActual'] = new SoporteClinico($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+               
 
                 break;
             case 4:
                  $_SESSION['UsuarioActual'] = new SoporteInfraestructura($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+                
 
                 break;
             case 5:
                  $_SESSION['UsuarioActual'] = new SoporteInformatica($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
-
+            
                 break;
             case 6:
                  $_SESSION['UsuarioActual'] = new SupervisorClinico($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
-
+               
                 break;
             case 7:
                  $_SESSION['UsuarioActual'] = new SupervisorInfraestructura($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+           
 
                 break;
             case 8:
                  $_SESSION['UsuarioActual'] = new SupervisorInformatica($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+                
 
                 break;
 
             default:
                  $_SESSION['UsuarioActual'] = new UsuarioFinal($this->ClaseDb);
-                 $_SESSION['UsuarioActual']->InicializarUsuario($User);
+           
                 break;
         }
+        
+        $_SESSION['UsuarioActual']->InicializarUsuario($User);
     }
     
     

@@ -1,0 +1,23 @@
+mam_main_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MamMainBundle:Default:index }
+    
+mam_main_addUser:
+    path:     /usuario/addUser/{nombre}/{cedula}/{cede}/{area}
+    defaults: { _controller: MamMainBundle:Usuario:add, nombre:uName, cedula:uCedula, cede:uCede, area:uArea }
+
+mam_main_deleteUser:
+    path:     /hello/{name}
+    defaults: { _controller: MamMainBundle:Default:index }
+
+mam_main_allUser:
+    path:     /hello/{name}
+    defaults: { _controller: MamMainBundle:Default:index }
+
+mam_main_oneUser:
+    path:     /hello/{name}
+    defaults: { _controller: MamMainBundle:Default:index }
+
+mam_main_updateUser:
+    path:     /hello/{name}
+    defaults: { _controller: MamMainBundle:Default:index }

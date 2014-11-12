@@ -1,0 +1,4 @@
+services:
+#    mam_main.example:
+#        class: Mam\MainBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
